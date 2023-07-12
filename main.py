@@ -1,4 +1,3 @@
-!pip install fastapi
 # importation des librairies nécessaires
 from datetime import datetime
 import streamlit as st
