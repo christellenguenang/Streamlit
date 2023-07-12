@@ -1,7 +1,6 @@
-from datetime import datetime
-
+pip install fastapi
 # importation des librairies nécessaires
-
+from datetime import datetime
 import streamlit as st
 from fastapi import FastAPI
 import matplotlib.pyplot as plt
