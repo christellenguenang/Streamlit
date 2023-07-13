@@ -1,8 +1,0 @@
-streamlit
-fastapi
-matplotlib
-plotly
-pandas
-seaborn
-requests
-numpy
