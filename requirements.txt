@@ -5,8 +5,8 @@ blinker==1.6.2
 cachetools==5.3.1
 certifi==2023.5.7
 charset-normalizer==3.1.0
-click @ file:///C:/ci/click_1646056762388/work
-colorama @ file:///C:/b/abs_a9ozq0l032/croot/colorama_1672387194846/work
+click 
+colorama 
 contourpy==1.1.0
 cycler==0.11.0
 decorator==5.1.1
@@ -15,7 +15,7 @@ fastapi==0.99.1
 fonttools==4.40.0
 gitdb==4.0.10
 GitPython==3.1.31
-h11 @ file:///tmp/build/80754af9/h11_1620423447028/work
+h11 
 idna==3.4
 importlib-metadata==6.7.0
 Jinja2==3.1.2
@@ -30,7 +30,7 @@ numpy==1.25.0
 packaging==23.1
 pandas==2.0.3
 Pillow==9.5.0
-plotly @ file:///C:/ci/plotly_1658160673416/work
+plotly 
 protobuf==4.23.4
 pyarrow==12.0.1
 pydantic==1.10.11
@@ -51,7 +51,7 @@ smmap==5.0.0
 sniffio==1.3.0
 starlette==0.27.0
 streamlit==1.24.0
-tenacity @ file:///C:/b/abs_ddkoa9nju6/croot/tenacity_1682972298929/work
+tenacity 
 termcolor==2.3.0
 toml==0.10.2
 toolz==0.12.0
@@ -60,7 +60,7 @@ typing_extensions==4.7.1
 tzdata==2023.3
 tzlocal==4.3.1
 urllib3==2.0.3
-uvicorn @ file:///C:/b/abs_bbigfycj8x/croot/uvicorn-split_1678090119838/work
+uvicorn 
 validators==0.20.0
 watchdog==3.0.0
 zipp==3.15.0
