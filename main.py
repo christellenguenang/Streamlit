@@ -7,9 +7,8 @@ import plotly.graph_objects as go
 import matplotlib.dates as mdates
 import pandas as pd
 import seaborn as sns
-import requests
+import httpx
 import numpy as np
-import io
 app = FastAPI()
 
 
@@ -19,7 +18,8 @@ st.markdown(" ## I. Les Dashboards")
 
 # Importation des bases achats, clics et impressions
 
-response = requests.get("http://127.0.0.1:8000/fusion")
+with httpx.Client() as client:
+    response = client.get("http://127.0.0.1:8000/fusion")
 fusion= response.json()
 fusion = pd.DataFrame(fusion)
 
