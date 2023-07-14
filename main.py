@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 import matplotlib.dates as mdates
 import pandas as pd
 import seaborn as sns
-import requests
+#import requests
 import numpy as np
 app = FastAPI()
 
