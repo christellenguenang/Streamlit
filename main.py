@@ -34,10 +34,10 @@ def get_donnees():
 
     return jsonify(fusion)
 
-if __name__ == "__main__":
-    app.run()
-
-flask_url = "http://localhost:5000/fusion"  # Replace with your Flask server URL
+if __name__=='__main__':
+ uvicorn.run(app, host='127.0.0.1',port=8000)
+    
+flask_url = "http://127.0.0.1:8000/fusion"  # Replace with your Flask server URL
 response = requests.get(flask_url)
 fusion_data = response.json()
     
