@@ -33,8 +33,7 @@ def get_donnees():
     fusion = fusion.fillna("-")
     return jsonify(fusion)
 
-if __name__=='__main__':
-  uvicorn.run(app, host='0.0.0.0', port=8000)
+
 
 
     
@@ -120,6 +119,9 @@ fig.update_layout(
 
 fig2.plotly_chart(fig)
 
+
+if __name__=='__main__':
+  uvicorn.run(app, host='127.0.0.1', port=8000)
 
 
 
