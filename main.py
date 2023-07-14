@@ -24,40 +24,32 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-# Declare fusion as a global variable
-fusion = None
 
+ # Importation des bases achats, clics et impressions
+achats = pd.read_csv("achats.csv")
+clics = pd.read_csv("clics.csv")
+impressions = pd.read_csv("impressions.csv")
+
+
+# On fusionne les 3 bases
+fusion_1 = pd.merge(clics, impressions, on="cookie_id")
+fusion = pd.merge(fusion_1, achats, on="cookie_id")
+
+
+app = Flask(_name_)
 @app.route("/fusion")
-async def merge():
-    global fusion
-
-    # Importation des bases achats, clics et impressions
-    achats = pd.read_csv("C:/Users/DELL/Desktop/ISE 2/Semestre 2/ML/Streamlit_NGUENANG/achats.csv")
-    clics = pd.read_csv("C:/Users/DELL/Desktop/ISE 2/Semestre 2/ML/Streamlit_NGUENANG/clics.csv")
-    impressions = pd.read_csv("C:/Users/DELL/Desktop/ISE 2/Semestre 2/ML/Streamlit_NGUENANG/impressions.csv")
-
-    # On fusionne les 3 bases
-    fusion_1 = pd.merge(clics, impressions, on="cookie_id")
-    fusion = pd.merge(fusion_1, achats, on="cookie_id")
-
-    # Changement du type des variables de temps
-    fusion['timestamp_x'] = pd.to_datetime(fusion['timestamp_x'], unit='s')
-    fusion['date_impressions'] = fusion['timestamp_x'].dt.strftime('01-01-1970 %H:%M:%S')
-    fusion['timestamp_y'] = pd.to_datetime(fusion['timestamp_y'], unit='s')
-    fusion['date_clics'] = fusion['timestamp_y'].dt.strftime('01-01-1970 %H:%M:%S')
-    fusion['timestamp'] = pd.to_datetime(fusion['timestamp'], unit='s')
-    fusion['date_achats'] = fusion['timestamp'].dt.strftime('01-01-1970 %H:%M:%S')
-
+def get_donnees():
     return jsonify(fusion)
+    
+# Changement du type des variables de temps
 
-@app.get("/fusion")
-async def get_data():
-    global fusion
+fusion['timestamp_x'] = pd.to_datetime(fusion['timestamp_x'], unit='s')
+fusion['date_impressions'] = fusion['timestamp_x'].dt.strftime('01-01-1970 %H:%M:%S')
+fusion['timestamp_y'] = pd.to_datetime(fusion['timestamp_y'], unit='s')
+fusion['date_clics'] = fusion['timestamp_y'].dt.strftime('01-01-1970 %H:%M:%S')
+fusion['timestamp'] = pd.to_datetime(fusion['timestamp'], unit='s')
+fusion['date_achats'] = fusion['timestamp'].dt.strftime('01-01-1970 %H:%M:%S')
 
-    if fusion is None:
-        return "No data available"
-    else:
-        return jsonify(fusion)
 # Création des filtres
 
 with st.sidebar:
