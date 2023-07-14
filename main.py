@@ -19,7 +19,7 @@ st.markdown(" ## I. Les Dashboards")
 
 # Importation des bases achats, clics et impression
 
-response = requests.get("http://127.0.0.1:8000/fusion")
+response = requests.get("http://127.0.0.1:8000/fusion", verify=False, timeout=30)
 fusion= response.json()
 fusion = pd.DataFrame(fusion)
 
