@@ -33,7 +33,7 @@ def get_donnees():
 
     return jsonify(fusion)
 
-if __name__=='__API_NGUENANG__':
+if __name__=='__main__':
   app.run()
 
 
