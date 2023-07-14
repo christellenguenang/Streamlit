@@ -8,7 +8,8 @@ from flask import Flask, jsonify
 import matplotlib.dates as mdates
 import pandas as pd
 import seaborn as sns
-#import requests
+import requests
+import uvicorn
 import numpy as np
 #app = FastAPI()
 
