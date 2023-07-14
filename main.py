@@ -46,7 +46,6 @@ async def merge():
     fusion['date_clics'] = fusion['timestamp_y'].dt.strftime('01-01-1970 %H:%M:%S')
     fusion['timestamp'] = pd.to_datetime(fusion['timestamp'], unit='s')
     fusion['date_achats'] = fusion['timestamp'].dt.strftime('01-01-1970 %H:%M:%S')
-    fusion = fusion.fillna("-")
 
     return jsonify(fusion)
 
@@ -63,8 +62,8 @@ async def get_data():
 with st.sidebar:
     st.write("Les filtres")
     age = st.slider('Age:', min_value=19.0, max_value=69.0, value=(19.0, 69.0))
+    campaign = st.multiselect('campaign_id:', options=np.unique(fusion['campaign_id']))
 
-filtre= fusion
 
 col1, col2 = st.columns(2)
 
