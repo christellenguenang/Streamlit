@@ -50,15 +50,11 @@ async def merge():
 
     return jsonify(fusion)
 
-
+flask_url = "http://localhost:5000/fusion"
 @app.get("/fusion")
-async def get_data():
-    global fusion
-
-    if fusion is None:
-        return "No data available"
-    else:
-        return jsonify(fusion)
+def get_fusion_data():
+    response = requests.get(flask_url)
+        return response.json()
 
 
 # Création des filtres
