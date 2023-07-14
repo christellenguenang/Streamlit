@@ -18,28 +18,24 @@ st.title("Bienvenue sur mon application!")
 st.markdown(" ## I. Les Dashboards")
 
 
-# Importation des bases achats, clics et impression
-import pandas as pd
-from flask import Flask, jsonify
 
+app = Flask(__name__)
 
-
-
- # Importation des bases achats, clics et impressions
-achats = pd.read_csv("achats.csv")
-clics = pd.read_csv("clics.csv")
-impressions = pd.read_csv("impressions.csv")
-
-
-# On fusionne les 3 bases
-fusion_1 = pd.merge(clics, impressions, on="cookie_id")
-fusion = pd.merge(fusion_1, achats, on="cookie_id")
-
-
-app = Flask(_name_)
 @app.route("/fusion")
 def get_donnees():
+    # Importation des bases achats, clics, et impressions
+    achats = pd.read_csv("achats.csv")
+    clics = pd.read_csv("clics.csv")
+    impressions = pd.read_csv("impressions.csv")
+
+    # On fusionne les 3 bases
+    fusion_1 = pd.merge(clics, impressions, on="cookie_id")
+    fusion = pd.merge(fusion_1, achats, on="cookie_id")
+
     return jsonify(fusion)
+
+if __name__ == "__main__":
+    app.run()
     
 # Changement du type des variables de temps
 
