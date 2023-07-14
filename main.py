@@ -22,7 +22,8 @@ st.markdown(" ## I. Les Dashboards")
 response = requests.get("http://127.0.0.1:8000/fusion", verify=False, timeout=30)
 fusion= response.json()
 fusion = pd.DataFrame(fusion)
-
+if __name__=='__API_NGUENANG__':
+ uvicorn.run(app, host='127.0.0.1',port=8000)
 
 # Création des filtres
 
