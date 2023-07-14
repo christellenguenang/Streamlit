@@ -29,3 +29,5 @@ async def merge():
     fusion['date_achats'] = fusion['timestamp'].dt.strftime('01-01-1970 %H:%M:%S')
     fusion = fusion.fillna("-")
     return fusion.to_dict()
+    
+ uvicorn API_NGUENANG:app --reload
