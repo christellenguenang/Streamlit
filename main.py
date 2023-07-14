@@ -54,7 +54,7 @@ flask_url = "http://localhost:5000/fusion"
 @app.get("/fusion")
 def get_fusion_data():
     response = requests.get(flask_url)
-return response.json()
+  return response.json()
 
 
 # Création des filtres
