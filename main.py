@@ -18,9 +18,9 @@ import numpy as np
 st.title("Bienvenue sur mon application!")
 st.markdown(" ## I. Les Dashboards")
 
-app = FastAPI(__name__)
+#app = FastAPI(__name__)
 
-#app = FastAPI()
+app = FastAPI()
 
 
 
