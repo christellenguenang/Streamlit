@@ -47,7 +47,7 @@ with st.sidebar:
     
 # Liaison des filtres et des tableaux
 
-filtre = fusion[(fusion['campaign_id'].isin(campaign)) & fusion['age'].between(*age)]
+filtre = fusion[(fusion['campaign_id'].isin(campaign)) | fusion['age'].between(*age)]
 
 col1, col2 = st.columns(2)
 
