@@ -18,28 +18,48 @@ st.markdown(" ## I. Les Dashboards")
 
 
 # Importation des bases achats, clics et impression
+import pandas as pd
+from flask import Flask, jsonify
 
-#response = requests.get("http://127.0.0.1:8000/fusion", verify=False, timeout=30)
-#fusion= response.json()
-#fusion = pd.DataFrame(fusion)
-#if __name__=='__API_NGUENANG__':
- #uvicorn.run(app, host='127.0.0.1',port=8000)
+app = Flask(__name__)
 
-achats = pd.read_csv("C:/Users/DELL/Desktop/ISE 2/Semestre 2/ML/Streamlit_NGUENANG/achats.csv")
-clics = pd.read_csv("C:/Users/DELL/Desktop/ISE 2/Semestre 2/ML/Streamlit_NGUENANG/clics.csv")
-impressions = pd.read_csv("C:/Users/DELL/Desktop/ISE 2/Semestre 2/ML/Streamlit_NGUENANG/impressions.csv")
+# Declare fusion as a global variable
+fusion = None
+
+@app.route("/fusion")
+async def merge():
+    global fusion
+
+    # Importation des bases achats, clics et impressions
+    achats = pd.read_csv("C:/Users/DELL/Desktop/ISE 2/Semestre 2/ML/Streamlit_NGUENANG/achats.csv")
+    clics = pd.read_csv("C:/Users/DELL/Desktop/ISE 2/Semestre 2/ML/Streamlit_NGUENANG/clics.csv")
+    impressions = pd.read_csv("C:/Users/DELL/Desktop/ISE 2/Semestre 2/ML/Streamlit_NGUENANG/impressions.csv")
 
     # On fusionne les 3 bases
-fusion_1 = pd.merge(clics, impressions, on="cookie_id")
-fusion = pd.merge(fusion_1, achats, on="cookie_id")
-    # changement du type des variables de temps
+    fusion_1 = pd.merge(clics, impressions, on="cookie_id")
+    fusion = pd.merge(fusion_1, achats, on="cookie_id")
 
-fusion['timestamp_x'] = pd.to_datetime(fusion['timestamp_x'], unit='s')
-fusion['date_impressions'] = fusion['timestamp_x'].dt.strftime('01-01-1970 %H:%M:%S')
-fusion['timestamp_y'] = pd.to_datetime(fusion['timestamp_y'], unit='s')
-fusion['date_clics'] = fusion['timestamp_y'].dt.strftime('01-01-1970 %H:%M:%S')
-fusion['timestamp'] = pd.to_datetime(fusion['timestamp'], unit='s')
-fusion['date_achats'] = fusion['timestamp'].dt.strftime('01-01-1970 %H:%M:%S')
+    # Changement du type des variables de temps
+    fusion['timestamp_x'] = pd.to_datetime(fusion['timestamp_x'], unit='s')
+    fusion['date_impressions'] = fusion['timestamp_x'].dt.strftime('01-01-1970 %H:%M:%S')
+    fusion['timestamp_y'] = pd.to_datetime(fusion['timestamp_y'], unit='s')
+    fusion['date_clics'] = fusion['timestamp_y'].dt.strftime('01-01-1970 %H:%M:%S')
+    fusion['timestamp'] = pd.to_datetime(fusion['timestamp'], unit='s')
+    fusion['date_achats'] = fusion['timestamp'].dt.strftime('01-01-1970 %H:%M:%S')
+    fusion = fusion.fillna("-")
+
+    return jsonify(fusion)
+
+
+@app.get("/fusion")
+async def get_data():
+    global fusion
+
+    if fusion is None:
+        return "No data available"
+    else:
+        return jsonify(fusion)
+
 
 # Création des filtres
 
