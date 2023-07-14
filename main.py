@@ -18,15 +18,11 @@ import numpy as np
 st.title("Bienvenue sur mon application!")
 st.markdown(" ## I. Les Dashboards")
 
-#app = FastAPI(__name__)
-
 app = FastAPI()
 
-
-
 @app.get("/fusion")
-async def merge():
-    # Importation des bases achats, clics et impressions
+def get_data():
+    # Importation des bases achats, clics, et impressions
     achats = pd.read_csv("achats.csv")
     clics = pd.read_csv("clics.csv")
     impressions = pd.read_csv("impressions.csv")
@@ -35,8 +31,8 @@ async def merge():
     fusion_1 = pd.merge(clics, impressions, on="cookie_id")
     fusion = pd.merge(fusion_1, achats, on="cookie_id")
     fusion = fusion.fillna("-")
-    return fusion.to_dict()
 
+    return fusion.to_dict(orient="records")
 
 
 
@@ -123,9 +119,6 @@ fig.update_layout(
 
 fig2.plotly_chart(fig)
 
-
-if __name__=='__main__':
-  uvicorn.run(app, host='127.0.0.1', port=8000)
 
 
 
