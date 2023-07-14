@@ -18,30 +18,16 @@ import numpy as np
 st.title("Bienvenue sur mon application!")
 st.markdown(" ## I. Les Dashboards")
 
-app = FastAPI()
+# Importation des bases achats, clics, et impressions
+achats = pd.read_csv("achats.csv")
+clics = pd.read_csv("clics.csv")
+impressions = pd.read_csv("impressions.csv")
 
-@app.get("/fusion")
-def get_data():
-    # Importation des bases achats, clics, et impressions
-    achats = pd.read_csv("achats.csv")
-    clics = pd.read_csv("clics.csv")
-    impressions = pd.read_csv("impressions.csv")
-
-    # On fusionne les 3 bases
-    fusion_1 = pd.merge(clics, impressions, on="cookie_id")
-    fusion = pd.merge(fusion_1, achats, on="cookie_id")
-    fusion = fusion.fillna("-")
-
-    return fusion.to_dict(orient="records")
-
-
+# On fusionne les 3 bases
+fusion_1 = pd.merge(clics, impressions, on="cookie_id")
+fusion = pd.merge(fusion_1, achats, on="cookie_id")
 
     
-fast= "http://127.0.0.1:8000/fusion"  # Replace with your Flask server URL
-response = requests.get(fast)
-fusion_data = response.json()
-fusion = pd.DataFrame(fusion_data)
-fusion = fusion.replace("-", pd.NA)
     
 # Changement du type des variables de temps
 
