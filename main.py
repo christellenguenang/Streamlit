@@ -63,8 +63,7 @@ async def get_data():
 with st.sidebar:
     st.write("Les filtres")
     age = st.slider('Age:', min_value=19.0, max_value=69.0, value=(19.0, 69.0))
-    campaign_ids = np.unique(fusion_data['campaign_id'])
-    campaign_selection = st.multiselect('campaign_id:', options=campaign_ids)
+
 
 
 
@@ -72,7 +71,7 @@ with st.sidebar:
 
 # Liaison des filtres et des tableaux
 
-filtre = fusion[(fusion['campaign_id'].isin(campaign)) | fusion['age'].between(*age)]
+filtre = fusion[fusion['age'].between(*age)]
 
 col1, col2 = st.columns(2)
 
