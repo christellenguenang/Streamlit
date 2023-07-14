@@ -1,7 +1,7 @@
 # importation des librairies nécessaires
 from datetime import datetime
 import streamlit as st
-from fastapi import FastAPI
+#from fastapi import FastAPI
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import matplotlib.dates as mdates
