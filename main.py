@@ -36,6 +36,10 @@ def get_donnees():
 
 if __name__ == "__main__":
     app.run()
+
+flask_url = "http://localhost:5000/fusion"  # Replace with your Flask server URL
+response = requests.get(flask_url)
+fusion_data = response.json()
     
 # Changement du type des variables de temps
 
