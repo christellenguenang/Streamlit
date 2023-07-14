@@ -34,7 +34,7 @@ def get_donnees():
     return jsonify(fusion)
 
 if __name__=='__API_NGUENANG__':
- uvicorn.run(app, host='127.0.0.1',port=8000)
+  app.run()
 
 
     
