@@ -1,10 +1,4 @@
-streamlit
-fastapi 
-matplotlib.pyplot 
-matplotlib.dates
-pandas 
-seaborn 
-numpy
+
 altair==5.0.1
 fastapi==0.99.1
 httpx==0.19.0
