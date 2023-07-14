@@ -42,7 +42,7 @@ flask_url = "http://127.0.0.1:8000/fusion"  # Replace with your Flask server URL
 response = requests.get(flask_url)
 fusion_data = response.json()
 fusion = pd.DataFrame(fusion_data)
- fusion = fusion.replace("-", pd.NA)
+fusion = fusion.replace("-", pd.NA)
     
 # Changement du type des variables de temps
 
