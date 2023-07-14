@@ -11,6 +11,7 @@ import requests
 import numpy as np
 app = FastAPI()
 
+python -m visdom.server
 
 st.title("Bienvenue sur mon application!")
 st.markdown(" ## I. Les Dashboards")
