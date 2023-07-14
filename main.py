@@ -30,7 +30,7 @@ def get_donnees():
     # On fusionne les 3 bases
     fusion_1 = pd.merge(clics, impressions, on="cookie_id")
     fusion = pd.merge(fusion_1, achats, on="cookie_id")
-
+    fusion = fusion.fillna("-")
     return jsonify(fusion)
 
 if __name__=='__main__':
@@ -42,6 +42,7 @@ flask_url = "http://127.0.0.1:8000/fusion"  # Replace with your Flask server URL
 response = requests.get(flask_url)
 fusion_data = response.json()
 fusion = pd.DataFrame(fusion_data)
+ fusion = fusion.replace("-", pd.NA)
     
 # Changement du type des variables de temps
 
