@@ -1,10 +1,10 @@
 # importation des librairies nécessaires
 from datetime import datetime
 import streamlit as st
-#from fastapi import FastAPI
+from fastapi import FastAPI
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
-from flask import Flask, jsonify
+#from flask import Flask, jsonify
 import matplotlib.dates as mdates
 import pandas as pd
 import seaborn as sns
@@ -18,11 +18,15 @@ import numpy as np
 st.title("Bienvenue sur mon application!")
 st.markdown(" ## I. Les Dashboards")
 
-app = Flask(__name__)
+app = FastAPI(__name__)
 
-@app.route("/fusion")
-def get_donnees():
-    # Importation des bases achats, clics, et impressions
+#app = FastAPI()
+
+
+
+@app.get("/fusion")
+async def merge():
+    # Importation des bases achats, clics et impressions
     achats = pd.read_csv("achats.csv")
     clics = pd.read_csv("clics.csv")
     impressions = pd.read_csv("impressions.csv")
@@ -31,14 +35,14 @@ def get_donnees():
     fusion_1 = pd.merge(clics, impressions, on="cookie_id")
     fusion = pd.merge(fusion_1, achats, on="cookie_id")
     fusion = fusion.fillna("-")
-    return jsonify(fusion)
+    return fusion.to_dict()
 
 
 
 
     
-flask_url = "http://127.0.0.1:8000/fusion"  # Replace with your Flask server URL
-response = requests.get(flask_url)
+fast= "http://127.0.0.1:8000/fusion"  # Replace with your Flask server URL
+response = requests.get(fast)
 fusion_data = response.json()
 fusion = pd.DataFrame(fusion_data)
 fusion = fusion.replace("-", pd.NA)
