@@ -22,7 +22,7 @@ st.markdown(" ## I. Les Dashboards")
 import pandas as pd
 from flask import Flask, jsonify
 
-app = Flask(__name__)
+
 
 
  # Importation des bases achats, clics et impressions
