@@ -21,7 +21,7 @@ st.markdown(" ## I. Les Dashboards")
 with httpx.Client() as client:
    response = client.get("http://127.0.0.1:8000/fusion")
  fusion= response.json()
-fusion = pd.DataFrame(fusion)
+ fusion = pd.DataFrame(fusion)
 
 
 # Création des filtres
