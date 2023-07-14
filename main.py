@@ -64,14 +64,7 @@ with st.sidebar:
     st.write("Les filtres")
     age = st.slider('Age:', min_value=19.0, max_value=69.0, value=(19.0, 69.0))
 
-
-
-
-
-
-# Liaison des filtres et des tableaux
-
-filtre = fusion[fusion['age'].between(*age)]
+filtre= fusion
 
 col1, col2 = st.columns(2)
 
